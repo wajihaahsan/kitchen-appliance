@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+   
+    /* Additional CSS styles for product details */
+    .carousel {
+        height: 300px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .carousel-indicators {
+        bottom: -160px; /* Adjust the position as needed */
+    }
+
+    .carousel-indicators li {
+        width: 16px; /* Increase the width as needed */
+        height: 16px;
+        border-radius: 50%; /* Add border-radius to make it circular */
+        background-color: rgba(0, 0, 0, 0.5); /* Customize the background color */
+    }
+
+    .carousel-indicators .active {
+        background-color: rgba(0, 0, 0, 0.9); /* Customize the active indicator color */
+    }
+
+    .product-details {
+        padding: 40px;
+    }
+
+    .product-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .product-description {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    /* Star rating styles */
+    .stars {
+        width: 270px;
+        display: inline-block;
+        margin-right: 360px;
+    }
+
+    input.star { display: none; }
+
+    label.star {
+        float: right;
+
+        font-size: 20px;
+        color: #4A148C;
+        transition: all .2s;
+    }
+
+    input.star:checked ~ label.star:before {
+        content: '\f005';
+        color: #FFD700;
+        transition: all .25s;
+    }
+
+    input.star-5:checked ~ label.star:before,
+    input.star-4:checked ~ label.star:before,
+    input.star-3:checked ~ label.star:before,
+    input.star-2:checked ~ label.star:before,
+    input.star-1:checked ~ label.star:before {
+        color: #FFD700;
+    }
+
+    label.star:before {
+        content: '\f006';
+        font-family: FontAwesome;
+    }
+
+    label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+    /* Button styles */
+    .btn-primary {
+        background-color: #4A148C;
+        border-color: #4A148C;
+        margin-top: 20px;
+        transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #FFD700;
+        border-color: #FFD700;
+    }
+
+    label {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    input {
+        width: 50px;
+        font-size: 16px;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+    }
+
+    button {
+        font-size: 18px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    p {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    #totalPrice {
+        font-weight: bold;
+        color: #007bff;
+    }
+    /* ... other styles ... */
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .carousel {
+            height: 200px;
+        }
+
+        .carousel-indicators {
+            bottom: -120px;
+        }
+
+        .product-details {
+            padding: 20px;
+            
+        }
+     
+        .stars {
+            width: 150px;
+            margin-right: 0;
+        }
+
+        label {
+            margin-right: 5px;
+        }
+    }
+    /* Set a fixed width for the "row1" div on smaller screens */
+    @media (max-width: 576px) {
+        .row1 {
+            width: 350px;
+            margin: 0 auto;
+        }
+    }
+
+    /* Custom CSS for product cards */
+    .container2 {
+        padding: 60px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.05); /* Apply scale animation on hover */
+    }
+
+    .card-img-top {
+        border-radius: 10px 10px 0 0;
+        height: 230px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-text {
+        font-size: 17px;
+        color: #555;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    h2 {
+  font-size: 48px;
+  font-weight: bold;
+  color: rgb(8, 2, 17);
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 3px;
+  background-color: #4A148C;
+  opacity: 0.5;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #FFD700;
+}
+
+/* Hover effect */
+h2:hover::before {
+  opacity: 1;
+  width: 90%;
+  transition: all 0.3s ease;
+}
+  /* Rating styles */
+  .rating {
+            color: #FFD700;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .checked {
+            color: #FFD700;
+        }
+
+        /* Reviews styles */
+        .reviews {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Call-to-Action button styles */
+        .btn-primary {
+            background-color: #4A148C;
+            border-color: #4A148C;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #FFD700;
+            border-color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Left side - Carousel -->
+            <div class="col-md-6 ">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="blender.jpg" alt="Image 1" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="blender.jpg" alt="Image 2" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="blender.jpg" alt="Image 3" class="d-block w-100">
+                        </div>
+                    </div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- Right side - Product details -->
+            <div class="col-md-6">
+                <div class="product-details">
+                    <h1 class="product-title">Blender Product</h1>
+                    <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis luctus sapien. Fusce non arcu mauris.</p>
+                    <div class="container d-flex justify-content-center mt-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="stars">
+                                    <form action="">
+                                      <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                        <label class="star star-1" for="star-1"></label>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row1">
+                    <p><strong>Price:</strong> $199.99</p>
+                    <p><strong>Brand:</strong> Kitchen Appliances</p>
+                    <p><strong>In Stock:</strong> Yes</p>
+                    <div>
+                        
+                        <label for="quantity">Quantity:</label>
+                        <button id="decrementBtn">-</button>
+                        <input type="number" id="quantity" min="1" value="1">
+                        <button id="incrementBtn">+</button>
+                        <br>
+                        <p>Total Price: $<span id="totalPrice">0</span></p>
+                    </div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container2 mt-4">
+        <h2>Related Products</h2>
+        <div class="row">
+            <!-- Product Card 1 -->
+            <div class="col mb-4  mt-4">
+                <div class="card text-center">
+                    <img class="card-img-top" src="blender.jpg" alt="Appliance 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Appliance 1</h5>
+                        <p class="card-text">Price: $99.99</p>
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <div class="reviews">
+                            <span>(125 Reviews)</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="col mb-4 mt-4">
+                <div class="card text-center">
+                    <img class="card-img-top" src="blender.jpg" alt="Appliance 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Appliance 2</h5>
+                        <p class="card-text">Price: $99.99</p>
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <div class="reviews">
+                            <span>(180 Reviews)</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="col mb-4 mt-4">
+                <div class="card text-center">
+                    <img class="card-img-top" src="blender.jpg" alt="Appliance 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Appliance 3</h5>
+                        <p class="card-text">Price: $99.99</p>
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <div class="reviews">
+                            <span>(321 Reviews)</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="col mb-4 mt-4">
+                <div class="card text-center">
+                    <img class="card-img-top" src="blender.jpg" alt="Appliance 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Appliance 4</h5>
+                        <p class="card-text">Price: $99.99</p>
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <div class="reviews">
+                            <span>(101 Reviews)</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Get the elements
+        const decrementBtn = document.getElementById("decrementBtn");
+        const incrementBtn = document.getElementById("incrementBtn");
+        const quantityInput = document.getElementById("quantity");
+        const totalPriceElement = document.getElementById("totalPrice");
+
+        // Initial price and quantity
+        let pricePerItem = 20; // Set your item price here
+        let quantity = 1;
+
+        // Function to update total price
+        function updateTotalPrice() {
+            let totalPrice = pricePerItem * quantity;
+            totalPriceElement.textContent = totalPrice;
+        }
+
+        // Event listener for decrement button
+        decrementBtn.addEventListener("click", () => {
+            if (quantity > 1) {
+                quantity--;
+                quantityInput.value = quantity;
+                updateTotalPrice();
+            }
+        });
+
+        // Event listener for increment button
+        incrementBtn.addEventListener("click", () => {
+            quantity++;
+            quantityInput.value = quantity;
+            updateTotalPrice();
+        });
+
+        // Event listener for quantity input change
+        quantityInput.addEventListener("change", () => {
+            quantity = parseInt(quantityInput.value);
+            if (isNaN(quantity) || quantity < 1) {
+                quantity = 1;
+            }
+            quantityInput.value = quantity;
+            updateTotalPrice();
+        });
+
+        // Initial update of total price
+        updateTotalPrice();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
